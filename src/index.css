@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Butterfly wing flap & hover */
+@keyframes wingFlapLeft {
+  0%, 100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(65deg);
+  }
+}
+
+@keyframes wingFlapRight {
+  0%, 100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(-65deg);
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+  66% {
+    transform: translateY(6px) rotate(-2deg);
+  }
+}
+
+@keyframes floatDrift {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  50% {
+    transform: translate(14px, -18px) rotate(6deg);
+  }
+}
+
+/* Sudden screen shake for the rooster scream */
+@keyframes roosterShake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-8px, -5px) rotate(-2deg); }
+  20% { transform: translate(8px, 6px) rotate(2deg); }
+  30% { transform: translate(-10px, 4px) rotate(-1.5deg); }
+  40% { transform: translate(9px, -5px) rotate(1.5deg); }
+  50% { transform: translate(-7px, 7px) rotate(-2deg); }
+  60% { transform: translate(8px, -4px) rotate(1.5deg); }
+  70% { transform: translate(-5px, 5px) rotate(-1deg); }
+  80% { transform: translate(6px, -3px) rotate(1deg); }
+  90% { transform: translate(-3px, 3px) rotate(0deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Flash effect */
+@keyframes screenFlash {
+  0% { opacity: 0; }
+  20% { opacity: 0.95; background-color: #ff0033; }
+  40% { opacity: 0.9; background-color: #ffffff; }
+  100% { opacity: 0; }
+}
+
+/* Big punchline zoom-in stamp */
+@keyframes stampZoom {
+  0% {
+    opacity: 0;
+    transform: scale(2.8) rotate(-4deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.92) rotate(1deg);
+  }
+  80% {
+    transform: scale(1.05) rotate(-1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Jumpscare violent zoom */
+@keyframes jumpscarePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) rotate(-10deg);
+    filter: drop-shadow(0 0 0px red);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18) rotate(3deg);
+    filter: drop-shadow(0 0 50px red);
+  }
+  75% {
+    transform: scale(0.95) rotate(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 35px rgba(239, 68, 68, 0.9));
+  }
+}
+
+/* Blood pulse for horror background */
+@keyframes bloodPulse {
+  0%, 100% {
+    background-color: #1a0004;
+  }
+  50% {
+    background-color: #3d020a;
+  }
+}
+
+/* Fade in up for subtitle */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-wing-left {
+  animation: wingFlapLeft 0.5s ease-in-out infinite;
+  transform-origin: right center;
+}
+
+.animate-wing-right {
+  animation: wingFlapRight 0.5s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+.animate-float-1 {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: floatDrift 6.5s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: floatGentle 4.2s ease-in-out infinite reverse;
+}
+
+.animate-shake {
+  animation: roosterShake 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+}
+
+.animate-flash {
+  animation: screenFlash 0.35s ease-out forwards;
+}
+
+.animate-stamp {
+  animation: stampZoom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-jumpscare {
+  animation: jumpscarePop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1.3) forwards;
+}
+
+.animate-blood-pulse {
+  animation: bloodPulse 1.8s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease-out 0.4s both;
+}
+
+/* Sticker glow and border utility */
+.meme-sticker {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.meme-sticker:hover {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+/* Respect user's motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-wing-left,
+  .animate-wing-right,
+  .animate-float-1,
+  .animate-float-2,
+  .animate-float-3,
+  .animate-shake,
+  .animate-flash,
+  .animate-stamp,
+  .animate-jumpscare,
+  .animate-blood-pulse,
+  .animate-fade-in-up {
+    animation: none !important;
+    transition: none !important;
+  }
+}
